@@ -13,7 +13,7 @@ app.config['UPLOAD_FOLDER'] = 'static/'  # Folder to save uploaded files
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # Load the trained model
-model_path = r'C:\Users\KIIT\Desktop\Potato_Disease_Detection\saved model\potato_with_balance_dataset.keras'  # Path to your saved model
+model_path = os.path.join("saved_model", "potato_with_balance_dataset.keras")
 model = load_model(model_path)
 model.compile(optimizer='adam',
               loss=SparseCategoricalCrossentropy(from_logits=False),
@@ -106,4 +106,4 @@ def predict_page():
     return render_template('predict.html')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host="0.0.0.0", port=5000)
